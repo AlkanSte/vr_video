@@ -25,6 +25,8 @@ jobs:
       run: WonderlandEditor --windowless --package --project Golf.wlp --output ./public/
       env:
         WLE_CREDENTIALS: ${{ secrets.WLE_CREDENTIALS }}
+    - name: List Files for Debugging
+      run: ls -l ./public
     - name: Gzip
       run: find ./public/ -type f ! -name '*.gz' -exec gzip -k "{}" \;
     - name: Upload artifact
