@@ -21,6 +21,21 @@ jobs:
     - uses: actions/checkout@v4
       with:
         lfs: true
+    - name: Debug Environment
+      run: |
+        echo "Environment Information"
+        uname -a
+        lsb_release -a
+        df -h
+        free -m
+    - name: Check Disk Space
+      run: df -h
+    - name: Check Memory
+      run: free -m
+    - name: Check Docker Version
+      run: docker --version
+    - name: List Files in Working Directory
+      run: ls -al
     - name: Package
       run: WonderlandEditor --windowless --package --project Golf.wlp --output ./public/
       env:
