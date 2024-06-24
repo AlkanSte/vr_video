@@ -1,0 +1,9 @@
+# project
+deploy/
+node_modules/
+cache/js
+.editor
+imgui.ini
+
+# Blender backup files
+*.blend1

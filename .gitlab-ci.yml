@@ -1,0 +1,37 @@
+stages:
+  - build
+  - deploy
+
+package:
+  image: wonderlandengine/editor:1.1.4
+  stage: build
+  script:
+    # Set up the WLE_CREDENTIALS variable for WonderlandEditor to log in
+    - WonderlandEditor --windowless --package --project Golf.wlp
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - cache/
+  artifacts:
+    paths:
+      - deploy
+      - pico_authentication.json
+      
+
+pages:
+  image: alpine:3.14
+  stage: deploy
+  rules:
+    # Only deploy to pages on main/master branch
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  before_script:
+    - apk add gzip
+  script:
+    - cp pico_authentication.json deploy/
+    - gzip -k deploy/*.*
+    - mv deploy public
+  artifacts:
+    paths:
+      - public
+      - pico_authentication.json
+      
