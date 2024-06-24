@@ -6,7 +6,7 @@
   "type": "module",
   "module": "js/index.js",
   "scripts": {
-    "build": "docker run --rm -v $(pwd):/app -w /app wonderlandengine/editor:latest WonderlandEditor --windowless --package --project Golf.wlp --output ./public",
+    "build": "WonderlandEditor --windowless --package --project Golf.wlp --output ./public",
     "start": "npx http-server ./public"
   },
   "keywords": [
