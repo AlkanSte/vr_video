@@ -1,12 +1,8 @@
-[
-build
-]
+[build]
   command = "echo 'Using pre-built deploy folder'"
   publish = "deploy"
 
-[[
-redirects
-]]
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
